@@ -44,8 +44,8 @@ def create_auth(request):
     if serialized.is_valid():
         CustomUser.objects.create_user(email=serialized.data["email"],
                                        password=serialized.data["password"],
-                                       first_name=serialized.data["first_name"],
-                                       last_name=serialized.data["last_name"]
+                                       name=serialized.data["name"],
+                                       surname=serialized.data["surname"]
                                        )
         return Response(serialized.data, status=status.HTTP_201_CREATED)
     else:
