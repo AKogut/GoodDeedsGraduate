@@ -1,5 +1,3 @@
-
-
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -36,7 +34,6 @@ class TokenObtainPairViewWithId(TokenObtainPairView):
     serializer_class = TokenObtainPairWithIdSerializer
 
 
-
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def create_auth(request):
@@ -44,8 +41,8 @@ def create_auth(request):
     if serialized.is_valid():
         CustomUser.objects.create_user(email=serialized.data["email"],
                                        password=serialized.data["password"],
-                                       name=serialized.data["name"],
-                                       surname=serialized.data["surname"]
+                                       first_name=serialized.data["first_name"],
+                                       last_name=serialized.data["last_name"]
                                        )
         return Response(serialized.data, status=status.HTTP_201_CREATED)
     else:
